@@ -1,3 +1,4 @@
+import Column from './components/column';
 import './App.css';
 
 function App() {
@@ -6,6 +7,9 @@ function App() {
       <header>
         <h1>TrackGols</h1>
       </header>
+      <main>
+        <Column/>
+      </main>
     </div>
   );
 }
