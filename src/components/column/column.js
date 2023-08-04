@@ -1,10 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-import Card from './card'
-import { getCards } from '../api/cards'
+import Card from '../card/card'
+import { getCards } from '../../api/cards'
 // import { getColumn } from '../api/columns'
-import './column.css'
 
 const Column = ({ id, title, fetchColumns}) => {
     const [cards, setCards] = useState([])

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
-import { getBoard } from '../api/boards'
-import {getColumns} from '../api/columns'
-import Column from './column'
+import { getBoard } from '../../api/boards'
+import {getColumns} from '../../api/columns'
+import Column from '../column/column'
 
 const Board = () => {
     const [board, setBoard] = useState({})
