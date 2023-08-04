@@ -9,12 +9,12 @@
 }
 
 .delete {
-position: absolute;
-top: 0;
-right: 0;
-margin: 10px;
-border-style: none;
-background-color: transparent;
-font-size: 18px;
-cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    border-style: none;
+    background-color: transparent;
+    font-size: 18px;
+    cursor: pointer;
 }

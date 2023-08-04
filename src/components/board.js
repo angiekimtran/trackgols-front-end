@@ -1,59 +1,23 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import { isEmpty } from 'lodash'
+import { getBoard } from '../api/boards'
 
-import Column from "./column"
-import { getColumns, deleteColumn } from "../api/columns"
-import { getBoard } from "../api/boards"
-
-const Board = ({ boardID, refetchBoard }) => {
-    const [columns, setColumns] = useState({});
-    const [board, setBoard] = useState({});
-
-    const refetchColumns = async () => {
-        const retrieveColumns = await getColumns(boardID);
-        setColumns(retrieveColumns);
-    };
-
-    const fetchBoard = async () => {
-        const selectedBoard = await getBoard(boardID);
-        setBoard(selectedBoard);
-    };
-
-    const onDeleteColumn = () => {
-        deleteColumn(boardID).then(() => {
-            refetchBoard();
-            setColumns({});
-            setBoard({});
-        });
-    };
+const Board = () => {
+    const [board, setBoard] = useState({})
+    const fetchBoard = () => {
+        getBoard().then((data) => {
+            setBoard(data)
+        })
+    }
 
     useEffect(() => {
-        if (boardID) {
-            fetchBoard();
-            refetchColumns();
+        if (isEmpty(board)) {
+            fetchBoard()
         }
-    });
+    })
 
-    return (
-        <section className="board">
-            <div>
-                <button className="delete-column" onClick={onDeleteColumn}>X</button>)
-            </div>
-            <h2 className="board-text-title">{board?.title}</h2>
-            <div className="board-container">
-                <ul className="ul-cards">
-                    {columns &&
-                        columns.map((column) => (
-                            <Column
-                                key={column._id}
-                                id={column._id}
-                                refetchColumns={refetchColumns}
-                            />
-                        ))}
-                </ul>
-            </div>
-        </section>
-    );
-};
+    return <div>{board?.title}</div>
+}
 
-export default Board;
+export default Board

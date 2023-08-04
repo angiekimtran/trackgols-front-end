@@ -1,53 +1,53 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react'
+import { useState, useEffect } from 'react'
 // import { useDrag } from 'react-dnd'
 
-import Card from "./card"
-import { getCards } from "../api/cards"
-import { getColumn } from "../api/columns"
-import "./column.css";
+import Card from './card'
+import { getCards } from '../api/cards'
+import { getColumn } from '../api/columns'
+import './column.css'
 
 const Column = ({ columnID, onDragCard }) => {
-  const [cards, setCards] = useState({});
-  const [column, setColumn] = useState({});
+    const [cards, setCards] = useState({})
+    const [column, setColumn] = useState({})
 
-  // const onSelect = (id) => {
-  //   onDragCard(id);
-  // };
+    // const onSelect = (id) => {
+    //   onDragCard(id);
+    // };
 
-  const fetchColumn = async () => {
-    const selectedColumn = await getColumn(columnID);
-    setColumn(selectedColumn);
-  };
-
-  const refetchCards = async () => {
-    const retrieveColumns = await getCards(columnID);
-    setCards(retrieveColumns);
-  };
-
-  useEffect(() => {
-    if (columnID) {
-      fetchColumn();
-      refetchCards();
+    const fetchColumn = async () => {
+        const selectedColumn = await getColumn(columnID)
+        setColumn(selectedColumn)
     }
-  });
 
-  return (
-    <section className="column">
-      <h2 className="column-title">{column?.title}</h2>
-      <section className="card-list">
-        <ul>
-          {cards &&
-            cards.map((card) => (
-              <Card
-                key={card.card_id}
-                id={card.card_id}
-                message={card.message}
-                refetchCards={refetchCards}
-              />
-            ))}
-        </ul>
-        {/* <ul>
+    const refetchCards = async () => {
+        const retrieveColumns = await getCards(columnID)
+        setCards(retrieveColumns)
+    }
+
+    useEffect(() => {
+        if (columnID) {
+            fetchColumn()
+            refetchCards()
+        }
+    })
+
+    return (
+        <section className="column">
+            <h2 className="column-title">{column?.title}</h2>
+            <section className="card-list">
+                <ul>
+                    {cards &&
+                        cards.map((card) => (
+                            <Card
+                                key={card.card_id}
+                                id={card.card_id}
+                                message={card.message}
+                                refetchCards={refetchCards}
+                            />
+                        ))}
+                </ul>
+                {/* <ul>
             {cards &&
             cards.map((card) => (
                 <li key={card.card_id}>
@@ -57,9 +57,9 @@ const Column = ({ columnID, onDragCard }) => {
                 </li>
             ))}
         </ul> */}
-      </section>
-    </section>
-  );
-};
+            </section>
+        </section>
+    )
+}
 
-export default Column;
+export default Column
