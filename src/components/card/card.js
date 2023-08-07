@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-// import { deleteCard, updateCard } from '../api/cards'
+import React from 'react'
+import { Card as MuiCard, CardContent } from '@mui/material'
 
 const Card = ({ id, message, fetchCards }) => {
-
-
     return (
-         <div>{message}</div>
+        <MuiCard>
+            <CardContent>{message}</CardContent>
+        </MuiCard>
     )
 }
 

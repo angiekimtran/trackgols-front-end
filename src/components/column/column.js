@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Card as MuiCard, CardContent } from '@mui/material'
 
 import Card from '../card/card'
 import { getCards } from '../../api/cards'
-// import { getColumn } from '../api/columns'
 
-const Column = ({ id, title, fetchColumns}) => {
+const Column = ({ id, title }) => {
     const [cards, setCards] = useState([])
 
     const fetchCards = (id) => {
@@ -19,24 +19,23 @@ const Column = ({ id, title, fetchColumns}) => {
             fetchCards(id)
         }
     }, [id])
-    console.log(cards)
+
     return (
-        <section className="column">
-            <h2 className="column-title">{title}</h2>
-            <section className="card-list">
-                <ul>
-                    {cards &&
-                        cards.map((card) => (
-                            <Card
-                                key={card._id}
-                                id={card._id}
-                                message={card.message}
-                                fetchCards={fetchCards}
-                            />
-                        ))}
-                </ul>
-            </section>
-        </section>
+        <MuiCard sx={{ width: 250 }}>
+            <CardContent>
+                <div>
+                    <h2>{title}</h2>
+                    {cards.map((card) => (
+                        <Card
+                            key={card._id}
+                            id={card._id}
+                            message={card.message}
+                            fetchCards={fetchCards}
+                        />
+                    ))}
+                </div>
+            </CardContent>
+        </MuiCard>
     )
 }
 

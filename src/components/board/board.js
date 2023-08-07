@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
+import { Grid } from '@mui/material'
 import { getBoard } from '../../api/boards'
-import {getColumns} from '../../api/columns'
+import { getColumns } from '../../api/columns'
 import Column from '../column/column'
 
 const Board = () => {
@@ -34,21 +35,23 @@ const Board = () => {
     }, [board])
 
     return (
-        <section>
-            <div>{board?.title}</div>
+        <div>
+            <h2>{board?.title}</h2>
             <div>
-                <ul>
-                    {columns && columns.map((column) => 
-                        <Column
-                        key={column._id}
-                        id={column._id}
-                        title={column.title}
-                        fetchColumns={fetchColumns}
-                        />
-                    )}
-                </ul>
+                <Grid container spacing={4}>
+                    {columns &&
+                        columns.map((column) => (
+                            <Grid item key={column._id}>
+                                <Column
+                                    id={column._id}
+                                    title={column.title}
+                                    fetchColumns={fetchColumns}
+                                />
+                            </Grid>
+                        ))}
+                </Grid>
             </div>
-        </section>
+        </div>
     )
 }
 
