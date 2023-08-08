@@ -6,6 +6,7 @@ import {
     DialogContent,
     DialogContentText,
     DialogActions,
+    Container,
 } from '@mui/material'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
@@ -44,8 +45,8 @@ const DeleteAlert = ({ onSubmitDelete }) => {
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
-                width={40}
             >
+                <Container sx={{width: 400, padding: '16px 24px'}}>
                 <DialogTitle id="alert-dialog-title">
                     {'Delete this card?'}
                 </DialogTitle>
@@ -55,7 +56,7 @@ const DeleteAlert = ({ onSubmitDelete }) => {
                         color={'#fc4641'}
                         fontSize={'small'}
                     >
-                        WARNING! This action cannot be undone.
+                        This action cannot be undone.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -64,6 +65,7 @@ const DeleteAlert = ({ onSubmitDelete }) => {
                         Proceed
                     </Button>
                 </DialogActions>
+                </Container>
             </Dialog>
         </div>
     )

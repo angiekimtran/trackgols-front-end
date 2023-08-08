@@ -9,7 +9,7 @@ import {
     DialogActions,
 } from '@mui/material'
 
-const CardForm = ({ submitForm }) => {
+const AddForm = ({ submitCreateCard }) => {
     const [message, setMessage] = useState()
     const [open, setOpen] = useState(false)
 
@@ -23,7 +23,7 @@ const CardForm = ({ submitForm }) => {
     }
 
     const handleSubmit = () => {
-        submitForm(message)
+        submitCreateCard(message)
         handleClose()
     }
     return (
@@ -36,7 +36,7 @@ const CardForm = ({ submitForm }) => {
                 Add Card
             </Button>
             <Dialog open={open}>
-                <DialogTitle>New Card Form</DialogTitle>
+                <DialogTitle>Add Card</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
                     <DialogContentText>Enter a message.</DialogContentText>
                     <TextField
@@ -44,6 +44,8 @@ const CardForm = ({ submitForm }) => {
                         margin="dense"
                         label="Message"
                         type="string"
+                        multiline
+                        maxRows={4}
                         fullWidth
                         variant="standard"
                         value={message}
@@ -59,4 +61,4 @@ const CardForm = ({ submitForm }) => {
     )
 }
 
-export default CardForm
+export default AddForm

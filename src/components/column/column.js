@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card as MuiCard, CardContent, CardActions } from '@mui/material'
 import Card from '../card/card'
-import CardForm from '../card/cardForm'
+import AddForm from '../card/addForm'
 import { createCard } from '../../api/cards'
 
 const Column = ({
@@ -14,7 +14,7 @@ const Column = ({
     setDragElement,
     moveCard,
 }) => {
-    const submitForm = (message) => {
+    const onSubmitCard = (message) => {
         createCard({ message }, id).then(() => {
             fetchColumns(boardID)
         })
@@ -39,7 +39,7 @@ const Column = ({
                         ))}
                 </div>
                 <CardActions>
-                    <CardForm submitForm={submitForm} />
+                    <AddForm onSubmitCard={onSubmitCard} />
                 </CardActions>
             </CardContent>
         </MuiCard>

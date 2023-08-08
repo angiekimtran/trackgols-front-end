@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
-import { Card as MuiCard, CardContent, Button } from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit'
-import { deleteCard } from '../../api/cards'
-import DeleteAlert from '../card/deleteAlert'
+import { Card as MuiCard, CardContent } from '@mui/material'
+import { deleteCard, updateCard } from '../../api/cards'
+import DeleteAlert from './deleteAlert'
+import UpdateForm from './updateForm'
 
 const Card = ({
     id,
@@ -30,8 +30,13 @@ const Card = ({
     }
 
     const onSubmitDelete = () => {
-        debugger
         deleteCard(id).then(() => {
+            fetchColumns(boardID)
+        })
+    }
+
+    const onSubmitUpdate = (updatedMsg) => {
+        updateCard(updatedMsg, id).then(() => {
             fetchColumns(boardID)
         })
     }
@@ -50,21 +55,12 @@ const Card = ({
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            alignItems: 'center',
+                            alignItems: 'center'
                         }}
                     >
                         <div>{message}</div>
                         <div>
-                            <Button
-                                sx={{
-                                    width: 30,
-                                    height: 30,
-                                    minWidth: 30,
-                                    minHeight: 30,
-                                }}
-                            >
-                                <EditIcon fontSize="small" />
-                            </Button>
+                            <UpdateForm onSubmitUpdate={onSubmitUpdate} message={message}/>
                             <DeleteAlert onSubmitDelete={onSubmitDelete} />
                         </div>
                     </CardContent>
