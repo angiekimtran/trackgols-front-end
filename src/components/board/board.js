@@ -15,9 +15,9 @@ const Board = () => {
     const [data, setData] = useState([])
     const [dragEl, setDragEl] = useState(null)
 
-    const onDrop =(card) => {
+    const onDrop = (card) => {
         // setCards((prevState) => {
-        //     prevState  
+        //     prevState
         //         .filter((i)=> i._id !== card._id)
         //         .concat(...card)
         // })
@@ -25,11 +25,16 @@ const Board = () => {
 
     const moveCard = (id) => {
         setData((prev) => {
-            const modifiedColumns = prev.map((column)=>({...column, cards: column.cards.reduce((acc, card)=>{
-                if (card._id.toString() === dragEl._id.toString()) return acc
-                if (card._id.toString() === id.toString()) return [...acc, card, dragEl]
-                return [...acc, card]
-            }, [])}))
+            const modifiedColumns = prev.map((column) => ({
+                ...column,
+                cards: column.cards.reduce((acc, card) => {
+                    if (card._id.toString() === dragEl._id.toString())
+                        return acc
+                    if (card._id.toString() === id.toString())
+                        return [...acc, card, dragEl]
+                    return [...acc, card]
+                }, []),
+            }))
 
             return modifiedColumns
             // const cardIndex = cards.findIndex((i)=> i.message === dragEl.message)
@@ -40,7 +45,7 @@ const Board = () => {
             // newState.splice(hoverIndex, 0, dragEl)
             // return [...newState]
         })
-    } 
+    }
 
     const setDragElement = (el) => setDragEl(el)
 
@@ -70,15 +75,30 @@ const Board = () => {
 
     useEffect(() => {
         if (!isEmpty(columns)) {
-            const fetchCards = async () => (await Promise.allSettled(columns.map((column) => getCards(column._id) )))
-                .reduce((acc, curr)=> curr.status === "fulfilled"? [...acc, ...curr.value]: acc, [])
-            fetchCards().then((c)=>setCards(c))
+            const fetchCards = async () =>
+                (
+                    await Promise.allSettled(
+                        columns.map((column) => getCards(column._id))
+                    )
+                ).reduce(
+                    (acc, curr) =>
+                        curr.status === 'fulfilled'
+                            ? [...acc, ...curr.value]
+                            : acc,
+                    []
+                )
+            fetchCards().then((c) => setCards(c))
         }
     }, [columns])
 
     useEffect(() => {
         if (!isEmpty(cards)) {
-            const d = columns.map((column)=>({...column, cards: column.cards.map((card)=>cards.find((c)=>c._id.toString() === card._id.toString()))}))
+            const d = columns.map((column) => ({
+                ...column,
+                cards: column.cards.map((card) =>
+                    cards.find((c) => c._id.toString() === card._id.toString())
+                ),
+            }))
             setData(d)
         }
     }, [cards])
@@ -89,21 +109,21 @@ const Board = () => {
             <div>
                 <Grid container columnSpacing={4}>
                     {data.map((column) => (
-                            
-                                <Grid item key={column._id}><DropWrapper onDrop={onDrop}>                               
-                                        <Column 
-                                            id={column._id}
-                                            boardID={board._id}
-                                            title={column.title}
-                                            cards={column.cards}
-                                            dragEl={dragEl}
-                                            setDragElement={setDragElement}
-                                            moveCard={moveCard}
-                                            fetchColumns={fetchColumns}
-                                        />
-                                </DropWrapper></Grid>
-                            
-                        ))}
+                        <Grid item key={column._id}>
+                            <DropWrapper onDrop={onDrop}>
+                                <Column
+                                    id={column._id}
+                                    boardID={board._id}
+                                    title={column.title}
+                                    cards={column.cards}
+                                    dragEl={dragEl}
+                                    setDragElement={setDragElement}
+                                    moveCard={moveCard}
+                                    fetchColumns={fetchColumns}
+                                />
+                            </DropWrapper>
+                        </Grid>
+                    ))}
                 </Grid>
             </div>
         </div>

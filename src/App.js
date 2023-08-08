@@ -23,7 +23,7 @@ function App() {
                         sx={{ flexGrow: 1 }}
                         color={'#ededed'}
                     >
-                        Food
+                        TrackGols
                     </Typography>
                 </AppBar>
             </header>
@@ -34,7 +34,7 @@ function App() {
                     background: '#ffffff',
                 }}
             >
-                <Container sx={{paddingTop: 5}}>
+                <Container sx={{ paddingTop: 5 }}>
                     <Board />
                 </Container>
             </main>
