@@ -16,13 +16,14 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <header>
-                <AppBar height={60} sx={{ background: '#c1c1c1' }}>
+                <AppBar height={60} sx={{ background: '#ededed' }}>
                     <Typography
                         variant="h3"
                         textAlign={'center'}
                         sx={{ flexGrow: 1 }}
+                        color={'#1034a6'}
                     >
-                        TrackGols
+                        Angie's Board
                     </Typography>
                 </AppBar>
             </header>

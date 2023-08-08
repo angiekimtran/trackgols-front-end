@@ -1,10 +1,19 @@
 import React from 'react'
-import {Card as MuiCard, CardContent} from '@mui/material'
+import {Card as MuiCard, CardContent, CardActions} from '@mui/material'
 import Card from '../card/card'
+import CardForm from '../card/cardForm'
+import {createCard} from '../../api/cards'
 
-const Column = ({ id, title, cards, dragEl, setDragElement, moveCard }) => {
+const Column = ({ id, boardID, fetchColumns, title, cards, dragEl, setDragElement, moveCard }) => {
+
+    const submitForm = (message) => {
+        createCard({message}, id).then(() => {
+            fetchColumns(boardID)
+        });
+    };
+
     return (
-        <MuiCard sx={{width: 250}}>
+        <MuiCard sx={{width: 250, background: '#ededed' }}>
             <CardContent>
                 <div>
                     <h2>{title}</h2>
@@ -18,6 +27,9 @@ const Column = ({ id, title, cards, dragEl, setDragElement, moveCard }) => {
                             />
                         ))}
                 </div>
+                <CardActions>
+                    <CardForm submitForm={submitForm}/>
+                </CardActions>
             </CardContent>
         </MuiCard>
     )

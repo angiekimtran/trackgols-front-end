@@ -85,19 +85,21 @@ const Board = () => {
 
     return (
         <div>
-            <h2>{board?.title}</h2>
+            {/* <h2>{board?.title}</h2> */}
             <div>
-                <Grid container spacing={4}>
+                <Grid container columnSpacing={4}>
                     {data.map((column) => (
                             <DropWrapper onDrop={onDrop}>
                                 <Grid item key={column._id}>                               
-                                        <Column
+                                        <Column 
                                             id={column._id}
+                                            boardID={board._id}
                                             title={column.title}
                                             cards={column.cards}
                                             dragEl={dragEl}
                                             setDragElement={setDragElement}
                                             moveCard={moveCard}
+                                            fetchColumns={fetchColumns}
                                         />
                                 </Grid>
                             </DropWrapper>
