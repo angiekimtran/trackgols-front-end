@@ -21,9 +21,11 @@ const Column = ({ id, boardID, fetchColumns, title, cards, dragEl, setDragElemen
                             <Card
                                 key={card._id}
                                 id={card._id}
+                                boardID={boardID}
                                 message={card.message}
                                 setDragElement={setDragElement}
                                 moveCard={moveCard}
+                                fetchColumns={fetchColumns}
                             />
                         ))}
                 </div>
