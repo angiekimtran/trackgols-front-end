@@ -89,8 +89,8 @@ const Board = () => {
             <div>
                 <Grid container columnSpacing={4}>
                     {data.map((column) => (
-                            <DropWrapper onDrop={onDrop}>
-                                <Grid item key={column._id}>                               
+                            
+                                <Grid item key={column._id}><DropWrapper onDrop={onDrop}>                               
                                         <Column 
                                             id={column._id}
                                             boardID={board._id}
@@ -101,8 +101,8 @@ const Board = () => {
                                             moveCard={moveCard}
                                             fetchColumns={fetchColumns}
                                         />
-                                </Grid>
-                            </DropWrapper>
+                                </DropWrapper></Grid>
+                            
                         ))}
                 </Grid>
             </div>

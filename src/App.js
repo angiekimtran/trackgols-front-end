@@ -16,14 +16,14 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <header>
-                <AppBar height={60} sx={{ background: '#ededed' }}>
+                <AppBar height={60} sx={{ background: '#2a3eb1' }}>
                     <Typography
                         variant="h3"
                         textAlign={'center'}
                         sx={{ flexGrow: 1 }}
-                        color={'#1034a6'}
+                        color={'#ededed'}
                     >
-                        Angie's Board
+                        Food
                     </Typography>
                 </AppBar>
             </header>
@@ -31,10 +31,10 @@ function App() {
                 style={{
                     height: 'calc(100vh - 60px)',
                     marginTop: 60,
-                    background: '#f8ebeb',
+                    background: '#ffffff',
                 }}
             >
-                <Container>
+                <Container sx={{paddingTop: 5}}>
                     <Board />
                 </Container>
             </main>

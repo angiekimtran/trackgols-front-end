@@ -35,6 +35,7 @@ const Card = ({ id, boardID, message, setDragElement, moveCard, fetchColumns }) 
                 onDragStart={onDragStart}
                 onDragOver={onDragOver}
                 onDragEnd={onDragEnd}
+                style={{margin: "8px 0px"}}
             >
                 <MuiCard>
                     <CardContent sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
