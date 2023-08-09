@@ -17,9 +17,10 @@ function App() {
         },
     })
 
-    const getBoardTitle = (title)=> {
+    const getBoardData = (title) => {
         setBoardTitle(title)
     }
+
     return (
         <ThemeProvider theme={theme}>
             <header>
@@ -30,7 +31,7 @@ function App() {
                         sx={{ flexGrow: 1 }}
                         color={'#ededed'}
                     >
-                        {boardTitle ?boardTitle :"TrackGols"}
+                        {boardTitle ? boardTitle : 'TrackGols'}
                     </Typography>
                 </AppBar>
             </header>
@@ -41,8 +42,8 @@ function App() {
                     background: '#ffffff',
                 }}
             >
-                <Container sx={{ paddingTop: 5, margin: "0px 80px"}}>
-                    <Board getBoardTitle={getBoardTitle}/>
+                <Container sx={{ paddingTop: 5, margin: '0px 80px' }}>
+                    <Board getBoardData={getBoardData} />
                 </Container>
             </main>
         </ThemeProvider>

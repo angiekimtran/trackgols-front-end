@@ -8,8 +8,10 @@ import Column from '../column/column'
 import DropWrapper from '../dragDrop/wrapper'
 import { getCards } from '../../api/cards'
 import AddColForm from '../column/addColForm'
+import { updateBoard } from '../../api/boards'
+import UpdateBoardTitle from '../board/updateForm'
 
-const Board = ({getBoardTitle}) => {
+const Board = ({ getBoardData }) => {
     const [board, setBoard] = useState({})
     const [columns, setColumns] = useState([])
     const [cards, setCards] = useState([])
@@ -63,7 +65,13 @@ const Board = ({getBoardTitle}) => {
     }
 
     const onSubmitColumn = (title) => {
-        createColumn({title}, board._id).then(() => {
+        createColumn({ title }, board._id).then(() => {
+            fetchBoard()
+        })
+    }
+
+    const onUpdateBoardTitle = (updatedTitle) => {
+        updateBoard(updatedTitle, board._id).then(() => {
             fetchBoard()
         })
     }
@@ -77,7 +85,7 @@ const Board = ({getBoardTitle}) => {
     useEffect(() => {
         if (!isEmpty(board) && board?._id) {
             fetchColumns(board._id)
-            getBoardTitle(board.title)
+            getBoardData(board.title)
         }
     }, [board])
 
@@ -112,28 +120,44 @@ const Board = ({getBoardTitle}) => {
     }, [cards])
 
     return (
-        <Grid container columnSpacing={5} wrap='nowrap'>
-            {data.map((column) => (
-                <Grid item key={column._id}>
-                    <DropWrapper onDrop={onDrop}>
-                        <Column
-                            id={column._id}
-                            boardID={board._id}
-                            title={column.title}
-                            cards={column.cards}
-                            dragEl={dragEl}
-                            setDragElement={setDragElement}
-                            moveCard={moveCard}
-                            fetchBoard={fetchBoard}
-                            fetchColumns={fetchColumns}
-                        />
-                    </DropWrapper>
+        <div>
+            <div
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    right: 0,
+                    zIndex: 1500,
+                    margin: 10,
+                }}
+            >
+                <UpdateBoardTitle
+                    onUpdateBoardTitle={onUpdateBoardTitle}
+                    title={board.title}
+                />
+            </div>
+            <Grid container columnSpacing={5} wrap="nowrap">
+                {data.map((column) => (
+                    <Grid item key={column._id}>
+                        <DropWrapper onDrop={onDrop}>
+                            <Column
+                                id={column._id}
+                                boardID={board._id}
+                                title={column.title}
+                                cards={column.cards}
+                                dragEl={dragEl}
+                                setDragElement={setDragElement}
+                                moveCard={moveCard}
+                                fetchBoard={fetchBoard}
+                                fetchColumns={fetchColumns}
+                            />
+                        </DropWrapper>
+                    </Grid>
+                ))}
+                <Grid item>
+                    <AddColForm onSubmitColumn={onSubmitColumn} />
                 </Grid>
-            ))}
-            <Grid item>
-                <AddColForm onSubmitColumn={onSubmitColumn}/>
             </Grid>
-        </Grid>
+        </div>
     )
 }
 

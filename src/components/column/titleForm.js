@@ -13,7 +13,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import DeleteColAlert from './deleteColAlert'
 
 const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
-    const [updatedTitle, setupdatedTitle] = useState(title)
+    const [updatedTitle, setUpdatedTitle] = useState(title)
     const [open, setOpen] = useState(false)
 
     const handleClickOpen = () => {
@@ -21,7 +21,7 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
     }
 
     const handleClose = () => {
-        setupdatedTitle(title)
+        setUpdatedTitle(title)
         setOpen(false)
     }
 
@@ -38,15 +38,15 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
 
     return (
         <div>
-            <Button
-                onClick={handleClickOpen}
-            >
-                <MoreHorizIcon/>
+            <Button onClick={handleClickOpen}>
+                <MoreHorizIcon />
             </Button>
             <Dialog open={open}>
                 <DialogTitle> Edit Column</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
-                    <DialogContentText>Enter a title for your column.</DialogContentText>
+                    <DialogContentText>
+                        Enter a title for your column.
+                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
@@ -57,17 +57,19 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
                         fullWidth
                         variant="standard"
                         value={updatedTitle}
-                        onChange={(e) => setupdatedTitle(e.target.value)}
+                        onChange={(e) => setUpdatedTitle(e.target.value)}
                     />
                 </DialogContent>
-                <DialogActions style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                        }}>
-                    <DeleteColAlert onDeleteColumn={onDeleteColumn}/>
+                <DialogActions
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
+                >
+                    <DeleteColAlert onDeleteColumn={onDeleteColumn} />
                     <div>
-                        <Button onClick={handleClose} >Cancel</Button>
+                        <Button onClick={handleClose}>Cancel</Button>
                         <Button onClick={handleSubmit}>Save</Button>
                     </div>
                 </DialogActions>

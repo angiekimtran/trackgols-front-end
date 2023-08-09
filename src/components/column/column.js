@@ -18,7 +18,7 @@ const Column = ({
     moveCard,
 }) => {
     const onUpdateColumn = (updatedTitle) => {
-        updateColumn({title: updatedTitle}, id).then(() => {
+        updateColumn({ title: updatedTitle }, id).then(() => {
             fetchColumns(boardID)
         })
     }
@@ -28,18 +28,25 @@ const Column = ({
             fetchColumns(boardID)
         })
     }
-    
+
     return (
         <MuiCard sx={{ width: 300, background: '#ededed' }}>
             <CardContent>
-                <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            height: 50
-                        }}>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        height: 50,
+                    }}
+                >
                     <h2>{title}</h2>
-                    <TitleForm title={title} onUpdateColumn={onUpdateColumn} columnID={id} fetchBoard={fetchBoard}/>
+                    <TitleForm
+                        title={title}
+                        onUpdateColumn={onUpdateColumn}
+                        columnID={id}
+                        fetchBoard={fetchBoard}
+                    />
                 </div>
                 {cards &&
                     cards.map((card) => (

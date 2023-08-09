@@ -38,7 +38,9 @@ const AddColForm = ({ onSubmitColumn }) => {
             <Dialog open={open}>
                 <DialogTitle> Add Column</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
-                    <DialogContentText>Enter a title for your column.</DialogContentText>
+                    <DialogContentText>
+                        Enter a title for your column.
+                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"

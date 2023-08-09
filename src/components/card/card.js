@@ -55,12 +55,15 @@ const Card = ({
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            alignItems: 'center'
+                            alignItems: 'center',
                         }}
                     >
                         <div>{message}</div>
                         <div>
-                            <UpdateForm onSubmitUpdate={onSubmitUpdate} message={message}/>
+                            <UpdateForm
+                                onSubmitUpdate={onSubmitUpdate}
+                                message={message}
+                            />
                             <DeleteAlert onSubmitDelete={onSubmitDelete} />
                         </div>
                     </CardContent>

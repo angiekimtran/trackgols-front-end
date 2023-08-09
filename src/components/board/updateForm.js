@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Button,
     Dialog,
     DialogTitle,
     DialogContent,
+    DialogContentText,
     TextField,
     DialogActions,
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 
-const UpdateForm = ({ message, onSubmitUpdate }) => {
-    const [updatedMessage, setUpdatedMessage] = useState(message)
+const UpdateBoardTitle = ({ title, onUpdateBoardTitle }) => {
+    const [updatedTitle, setUpdatedTitle] = useState(title)
     const [open, setOpen] = useState(false)
 
     const handleClickOpen = () => {
@@ -18,14 +19,17 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
     }
 
     const handleClose = () => {
-        setUpdatedMessage(message)
+        setUpdatedTitle(title)
         setOpen(false)
     }
 
     const handleSubmit = () => {
-        onSubmitUpdate(updatedMessage)
+        onUpdateBoardTitle(updatedTitle)
         handleClose()
     }
+    useEffect(() => {
+        setUpdatedTitle(title)
+    }, [title])
     return (
         <div>
             <Button
@@ -34,25 +38,29 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
                     height: 30,
                     minWidth: 30,
                     minHeight: 30,
+                    color: '#ededed',
                 }}
                 onClick={handleClickOpen}
             >
-                <EditIcon fontSize="small" />
+                <EditIcon fontSize="large" />
             </Button>
             <Dialog open={open}>
-                <DialogTitle>Edit Card</DialogTitle>
+                <DialogTitle>Update Title</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
+                    <DialogContentText>
+                        Enter a new title for your board.
+                    </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
-                        label="Message"
+                        label="Title"
                         type="string"
                         multiline
                         maxRows={4}
                         fullWidth
                         variant="standard"
-                        value={updatedMessage}
-                        onChange={(e) => setUpdatedMessage(e.target.value)}
+                        value={updatedTitle}
+                        onChange={(e) => setUpdatedTitle(e.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>
@@ -64,4 +72,4 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
     )
 }
 
-export default UpdateForm
+export default UpdateBoardTitle
