@@ -36,9 +36,9 @@ export const getColumn = async (id) => {
         })
 }
 
-export const updateColumn = async (title, id) => {
+export const updateColumn = async (update, id) => {
     return axios
-        .put(`http://localhost:3001/columns/${id}`, { title: title })
+        .put(`http://localhost:3001/columns/${id}`, update)
         .then((response) => {
             return response.data
         })

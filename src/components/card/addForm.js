@@ -9,7 +9,7 @@ import {
     DialogActions,
 } from '@mui/material'
 
-const AddForm = ({ submitCreateCard }) => {
+const AddForm = ({ onSubmitCard }) => {
     const [message, setMessage] = useState()
     const [open, setOpen] = useState(false)
 
@@ -23,7 +23,7 @@ const AddForm = ({ submitCreateCard }) => {
     }
 
     const handleSubmit = () => {
-        submitCreateCard(message)
+        onSubmitCard(message)
         handleClose()
     }
     return (
@@ -54,7 +54,7 @@ const AddForm = ({ submitCreateCard }) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit}>Save</Button>
+                    <Button onClick={handleSubmit}>Submit</Button>
                 </DialogActions>
             </Dialog>
         </div>

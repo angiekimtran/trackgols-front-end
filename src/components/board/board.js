@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
 import { Grid } from '@mui/material'
 import { getBoard } from '../../api/boards'
-import { getColumns } from '../../api/columns'
+import { getColumns, createColumn } from '../../api/columns'
 import Column from '../column/column'
 import DropWrapper from '../dragDrop/wrapper'
 import { getCards } from '../../api/cards'
+import AddColForm from '../column/addColForm'
 
 const Board = ({getBoardTitle}) => {
     const [board, setBoard] = useState({})
@@ -58,6 +59,12 @@ const Board = ({getBoardTitle}) => {
     const fetchColumns = (id) => {
         getColumns(id).then((data) => {
             setColumns(data)
+        })
+    }
+
+    const onSubmitColumn = (title) => {
+        createColumn({title}, board._id).then(() => {
+            fetchBoard()
         })
     }
 
@@ -117,11 +124,15 @@ const Board = ({getBoardTitle}) => {
                             dragEl={dragEl}
                             setDragElement={setDragElement}
                             moveCard={moveCard}
+                            fetchBoard={fetchBoard}
                             fetchColumns={fetchColumns}
                         />
                     </DropWrapper>
                 </Grid>
             ))}
+            <Grid item>
+                <AddColForm onSubmitColumn={onSubmitColumn}/>
+            </Grid>
         </Grid>
     )
 }
