@@ -21,7 +21,7 @@ const Column = ({
     }
 
     return (
-        <MuiCard sx={{ width: 250, background: '#ededed' }}>
+        <MuiCard sx={{ width: 300, background: '#ededed' }}>
             <CardContent>
                 <div>
                     <h2>{title}</h2>

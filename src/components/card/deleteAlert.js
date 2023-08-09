@@ -35,7 +35,6 @@ const DeleteAlert = ({ onSubmitDelete }) => {
                     minWidth: 30,
                     minHeight: 30,
                 }}
-                variant="outlined"
                 onClick={handleClickOpen}
             >
                 <DeleteForeverIcon fontSize="small" />

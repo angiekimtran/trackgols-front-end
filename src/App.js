@@ -6,13 +6,20 @@ import {
     Container,
 } from '@mui/material'
 import Board from './components/board/board'
+import { useState } from 'react'
 
 function App() {
+    const [boardTitle, setBoardTitle] = useState()
+
     const theme = createTheme({
         typography: {
             fontFamily: 'revert',
         },
     })
+
+    const getBoardTitle = (title)=> {
+        setBoardTitle(title)
+    }
     return (
         <ThemeProvider theme={theme}>
             <header>
@@ -23,7 +30,7 @@ function App() {
                         sx={{ flexGrow: 1 }}
                         color={'#ededed'}
                     >
-                        TrackGols
+                        {boardTitle ?boardTitle :"TrackGols"}
                     </Typography>
                 </AppBar>
             </header>
@@ -34,8 +41,8 @@ function App() {
                     background: '#ffffff',
                 }}
             >
-                <Container sx={{ paddingTop: 5 }}>
-                    <Board />
+                <Container sx={{ paddingTop: 5, margin: "0px 80px"}}>
+                    <Board getBoardTitle={getBoardTitle}/>
                 </Container>
             </main>
         </ThemeProvider>

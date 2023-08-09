@@ -8,7 +8,7 @@ import Column from '../column/column'
 import DropWrapper from '../dragDrop/wrapper'
 import { getCards } from '../../api/cards'
 
-const Board = () => {
+const Board = ({getBoardTitle}) => {
     const [board, setBoard] = useState({})
     const [columns, setColumns] = useState([])
     const [cards, setCards] = useState([])
@@ -70,6 +70,7 @@ const Board = () => {
     useEffect(() => {
         if (!isEmpty(board) && board?._id) {
             fetchColumns(board._id)
+            getBoardTitle(board.title)
         }
     }, [board])
 
@@ -104,29 +105,24 @@ const Board = () => {
     }, [cards])
 
     return (
-        <div>
-            {/* <h2>{board?.title}</h2> */}
-            <div>
-                <Grid container columnSpacing={4}>
-                    {data.map((column) => (
-                        <Grid item key={column._id}>
-                            <DropWrapper onDrop={onDrop}>
-                                <Column
-                                    id={column._id}
-                                    boardID={board._id}
-                                    title={column.title}
-                                    cards={column.cards}
-                                    dragEl={dragEl}
-                                    setDragElement={setDragElement}
-                                    moveCard={moveCard}
-                                    fetchColumns={fetchColumns}
-                                />
-                            </DropWrapper>
-                        </Grid>
-                    ))}
+        <Grid container columnSpacing={5} wrap='nowrap'>
+            {data.map((column) => (
+                <Grid item key={column._id}>
+                    <DropWrapper onDrop={onDrop}>
+                        <Column
+                            id={column._id}
+                            boardID={board._id}
+                            title={column.title}
+                            cards={column.cards}
+                            dragEl={dragEl}
+                            setDragElement={setDragElement}
+                            moveCard={moveCard}
+                            fetchColumns={fetchColumns}
+                        />
+                    </DropWrapper>
                 </Grid>
-            </div>
-        </div>
+            ))}
+        </Grid>
     )
 }
 
