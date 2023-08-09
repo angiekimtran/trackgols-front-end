@@ -7,6 +7,8 @@ import {
 } from '@mui/material'
 import Board from './components/board/board'
 import { useState } from 'react'
+import { alignProperty } from '@mui/material/styles/cssUtils'
+import { left } from '@popperjs/core'
 
 function App() {
     const [boardTitle, setBoardTitle] = useState()
@@ -24,12 +26,22 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <header>
-                <AppBar height={60} sx={{ background: '#2a3eb1' }}>
+                <AppBar height={60} sx={{display: '-webkit-inline-box', background: '#002884'}}>
+                    <Typography
+                        fontSize={'x-large'}
+                        textAlign={'left'}
+                        color={'#eeeeee'}
+                        marginTop={1}
+                        marginLeft={2}>
+                    {/* <img src='public/favicon.ico' alt='logo'/> */}
+                    TrackGols
+                    </Typography>
                     <Typography
                         variant="h3"
                         textAlign={'center'}
                         sx={{ flexGrow: 1 }}
-                        color={'#ededed'}
+                        color={'#eeeeee'}
+                        marginRight={22}
                     >
                         {boardTitle ? boardTitle : 'TrackGols'}
                     </Typography>
@@ -42,7 +54,7 @@ function App() {
                     background: '#ffffff',
                 }}
             >
-                <Container sx={{ paddingTop: 5, margin: '0px 80px' }}>
+                <Container sx={{ paddingTop: 3, margin: '0px 80px' }}>
                     <Board getBoardData={getBoardData} />
                 </Container>
             </main>

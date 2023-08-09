@@ -30,7 +30,7 @@ const Column = ({
     }
 
     return (
-        <MuiCard sx={{ width: 300, background: '#ededed' }}>
+        <MuiCard sx={{ width: 300, background: '#eeeeee' }}>
             <CardContent>
                 <div
                     style={{
@@ -38,6 +38,7 @@ const Column = ({
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         height: 50,
+                        color: '#002884'
                     }}
                 >
                     <h2>{title}</h2>

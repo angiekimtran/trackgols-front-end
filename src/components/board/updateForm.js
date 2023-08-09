@@ -38,7 +38,7 @@ const UpdateBoardTitle = ({ title, onUpdateBoardTitle }) => {
                     height: 30,
                     minWidth: 30,
                     minHeight: 30,
-                    color: '#ededed',
+                    color: '#eeeeee',
                 }}
                 onClick={handleClickOpen}
             >

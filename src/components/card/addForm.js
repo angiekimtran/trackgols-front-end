@@ -30,13 +30,13 @@ const AddForm = ({ onSubmitCard }) => {
         <div>
             <Button
                 variant="outlined"
-                sx={{ width: 200 }}
+                sx={{ width: 268, color: '#002884', marginLeft: -1}}
                 onClick={handleClickOpen}
             >
-                Add Card
+                + Add Task
             </Button>
             <Dialog open={open}>
-                <DialogTitle>Add Card</DialogTitle>
+                <DialogTitle>Add Task</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
                     <DialogContentText>Enter a message.</DialogContentText>
                     <TextField
