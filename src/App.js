@@ -7,8 +7,7 @@ import {
 } from '@mui/material'
 import Board from './components/board/board'
 import { useState } from 'react'
-import { alignProperty } from '@mui/material/styles/cssUtils'
-import { left } from '@popperjs/core'
+import logo from './assets/favicon.ico'
 
 function App() {
     const [boardTitle, setBoardTitle] = useState()
@@ -33,7 +32,7 @@ function App() {
                         color={'#eeeeee'}
                         marginTop={1}
                         marginLeft={2}>
-                    {/* <img src='public/favicon.ico' alt='logo'/> */}
+                    <img src={logo} alt='logo' style={{width: 20, height: 20}}/>
                     TrackGols
                     </Typography>
                     <Typography
