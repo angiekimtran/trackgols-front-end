@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { isEmpty } from 'lodash'
 import { Grid } from '@mui/material'
 import { getBoard } from '../../api/boards'
-import { getColumns, createColumn } from '../../api/columns'
+import { getColumns, createColumn, updateColumn } from '../../api/columns'
 import Column from '../column/column'
 import DropWrapper from '../dragDrop/wrapper'
 import { getCards } from '../../api/cards'
@@ -18,12 +18,15 @@ const Board = ({ getBoardData }) => {
     const [data, setData] = useState([])
     const [dragEl, setDragEl] = useState(null)
 
-    const onDrop = (card) => {
-        // setCards((prevState) => {
-        //     prevState
-        //         .filter((i)=> i._id !== card._id)
-        //         .concat(...card)
-        // })
+    const onDrop = () => {
+        const updates = data.filter((modified, i) => modified.cards.length !== columns[i].cards.length)
+        Promise.allSettled(
+                updates.map((column) => {
+                    const updatedCards = column.cards.map((card)=> ({_id: card._id}))
+                    debugger
+                    return updateColumn({cards: updatedCards}, column._id)               
+                })
+            ).then(()=>fetchColumns(board._id))
     }
 
     const moveCard = (id) => {
