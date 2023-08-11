@@ -5,6 +5,7 @@ import AddForm from '../card/addForm'
 import { createCard } from '../../api/cards'
 import { updateColumn } from '../../api/columns'
 import TitleForm from './titleForm'
+import DropWrapper from '../dragDrop/wrapper'
 
 const Column = ({
     id,
@@ -16,6 +17,7 @@ const Column = ({
     dragEl,
     setDragElement,
     moveCard,
+    onDrop
 }) => {
     const onUpdateColumn = (updatedTitle) => {
         updateColumn({ title: updatedTitle }, id).then(() => {
@@ -49,21 +51,23 @@ const Column = ({
                         fetchBoard={fetchBoard}
                     />
                 </div>
-                {cards &&
-                    cards.map((card) => (
-                        <Card
-                            key={card._id}
-                            id={card._id}
-                            boardID={boardID}
-                            message={card.message}
-                            setDragElement={setDragElement}
-                            moveCard={moveCard}
-                            fetchColumns={fetchColumns}
-                        />
-                    ))}
-                <CardActions>
-                    <AddForm onSubmitCard={onSubmitCard} />
-                </CardActions>
+                <DropWrapper onDrop={onDrop}>
+                    {cards &&
+                        cards.map((card) => (
+                            <Card
+                                key={card._id}
+                                id={card._id}
+                                boardID={boardID}
+                                message={card.message}
+                                setDragElement={setDragElement}
+                                moveCard={moveCard}
+                                fetchColumns={fetchColumns}
+                            />
+                        ))}</DropWrapper>
+                    <CardActions>
+                        <AddForm onSubmitCard={onSubmitCard} />
+                    </CardActions>
+                
             </CardContent>
         </MuiCard>
     )

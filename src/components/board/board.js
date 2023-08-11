@@ -5,11 +5,18 @@ import { Grid } from '@mui/material'
 import { getBoard } from '../../api/boards'
 import { getColumns, createColumn, updateColumn } from '../../api/columns'
 import Column from '../column/column'
-import DropWrapper from '../dragDrop/wrapper'
 import { getCards } from '../../api/cards'
 import AddColForm from '../column/addColForm'
 import { updateBoard } from '../../api/boards'
 import UpdateBoardTitle from '../board/updateForm'
+
+const getModifiedData = (columns, modifiedColumns) => {
+    
+    return modifiedColumns.filter((modified, columnIndex) => 
+        columns[columnIndex].cards.some((card, cardIndex)=> card._id !== modified?.cards[cardIndex]?._id) || 
+        modified.cards.some((card, cardIndex)=> card._id !== columns[columnIndex]?.cards[cardIndex]?._id)
+    )
+}
 
 const Board = ({ getBoardData }) => {
     const [board, setBoard] = useState({})
@@ -19,11 +26,10 @@ const Board = ({ getBoardData }) => {
     const [dragEl, setDragEl] = useState(null)
 
     const onDrop = () => {
-        const updates = data.filter((modified, i) => modified.cards.length !== columns[i].cards.length)
+        const updates = getModifiedData(columns, data)
         Promise.allSettled(
                 updates.map((column) => {
                     const updatedCards = column.cards.map((card)=> ({_id: card._id}))
-                    debugger
                     return updateColumn({cards: updatedCards}, column._id)               
                 })
             ).then(()=>fetchColumns(board._id))
@@ -43,13 +49,6 @@ const Board = ({ getBoardData }) => {
             }))
 
             return modifiedColumns
-            // const cardIndex = cards.findIndex((i)=> i.message === dragEl.message)
-            // const hoverIndex = cards.findIndex((i)=> i.message === card)
-            // const newState = [...cards]
-
-            // newState.splice(cardIndex, 1)
-            // newState.splice(hoverIndex, 0, dragEl)
-            // return [...newState]
         })
     }
 
@@ -141,7 +140,6 @@ const Board = ({ getBoardData }) => {
             <Grid container columnSpacing={5} wrap="nowrap">
                 {data.map((column) => (
                     <Grid item key={column._id}>
-                        <DropWrapper onDrop={onDrop}>
                             <Column
                                 id={column._id}
                                 boardID={board._id}
@@ -150,10 +148,10 @@ const Board = ({ getBoardData }) => {
                                 dragEl={dragEl}
                                 setDragElement={setDragElement}
                                 moveCard={moveCard}
+                                onDrop={onDrop}
                                 fetchBoard={fetchBoard}
                                 fetchColumns={fetchColumns}
                             />
-                        </DropWrapper>
                     </Grid>
                 ))}
                 <Grid item>

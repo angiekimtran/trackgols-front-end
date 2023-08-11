@@ -32,7 +32,7 @@ function App() {
                         color={'#eeeeee'}
                         marginTop={1}
                         marginLeft={2}>
-                    <img src={logo} alt='logo' style={{width: 20, height: 20}}/>
+                    <img src={logo} alt='logo' style={{width: 20, height: 20, paddingRight: 5}}/>
                     TrackGols
                     </Typography>
                     <Typography

@@ -25,8 +25,9 @@ const Card = ({
         e.preventDefault()
     }
 
-    const onDragEnd = (e) => {
-        e.target.style.visibility = 'hidden'
+    const onDragEnd = ({ dataTransfer, target }) => {
+        fetchColumns(boardID)
+        target.style.visibility = null
     }
 
     const onSubmitDelete = () => {
