@@ -11,10 +11,16 @@ import { updateBoard } from '../../api/boards'
 import UpdateBoardTitle from '../board/updateForm'
 
 const getModifiedData = (columns, modifiedColumns) => {
-    
-    return modifiedColumns.filter((modified, columnIndex) => 
-        columns[columnIndex].cards.some((card, cardIndex)=> card._id !== modified?.cards[cardIndex]?._id) || 
-        modified.cards.some((card, cardIndex)=> card._id !== columns[columnIndex]?.cards[cardIndex]?._id)
+    return modifiedColumns.filter(
+        (modified, columnIndex) =>
+            columns[columnIndex].cards.some(
+                (card, cardIndex) =>
+                    card._id !== modified?.cards[cardIndex]?._id
+            ) ||
+            modified.cards.some(
+                (card, cardIndex) =>
+                    card._id !== columns[columnIndex]?.cards[cardIndex]?._id
+            )
     )
 }
 
@@ -28,11 +34,13 @@ const Board = ({ getBoardData }) => {
     const onDrop = () => {
         const updates = getModifiedData(columns, data)
         Promise.allSettled(
-                updates.map((column) => {
-                    const updatedCards = column.cards.map((card)=> ({_id: card._id}))
-                    return updateColumn({cards: updatedCards}, column._id)               
-                })
-            ).then(()=>fetchColumns(board._id))
+            updates.map((column) => {
+                const updatedCards = column.cards.map((card) => ({
+                    _id: card._id,
+                }))
+                return updateColumn({ cards: updatedCards }, column._id)
+            })
+        ).then(() => fetchColumns(board._id))
     }
 
     const moveCard = (id) => {
@@ -140,18 +148,18 @@ const Board = ({ getBoardData }) => {
             <Grid container columnSpacing={5} wrap="nowrap">
                 {data.map((column) => (
                     <Grid item key={column._id}>
-                            <Column
-                                id={column._id}
-                                boardID={board._id}
-                                title={column.title}
-                                cards={column.cards}
-                                dragEl={dragEl}
-                                setDragElement={setDragElement}
-                                moveCard={moveCard}
-                                onDrop={onDrop}
-                                fetchBoard={fetchBoard}
-                                fetchColumns={fetchColumns}
-                            />
+                        <Column
+                            id={column._id}
+                            boardID={board._id}
+                            title={column.title}
+                            cards={column.cards}
+                            dragEl={dragEl}
+                            setDragElement={setDragElement}
+                            moveCard={moveCard}
+                            onDrop={onDrop}
+                            fetchBoard={fetchBoard}
+                            fetchColumns={fetchColumns}
+                        />
                     </Grid>
                 ))}
                 <Grid item>

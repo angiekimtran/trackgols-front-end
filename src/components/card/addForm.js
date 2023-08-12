@@ -30,7 +30,7 @@ const AddForm = ({ onSubmitCard }) => {
         <div>
             <Button
                 variant="outlined"
-                sx={{ width: 268, color: '#002884', marginLeft: -1}}
+                sx={{ width: 268, color: '#002884', marginLeft: -1 }}
                 onClick={handleClickOpen}
             >
                 + Add Task

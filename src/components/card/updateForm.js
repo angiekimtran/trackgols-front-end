@@ -27,7 +27,7 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
         handleClose()
     }
     return (
-        <div>
+        <div style={{ borderRight: '1px lightgray solid' }}>
             <Button
                 sx={{
                     width: 30,

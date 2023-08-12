@@ -17,7 +17,7 @@ const Column = ({
     dragEl,
     setDragElement,
     moveCard,
-    onDrop
+    onDrop,
 }) => {
     const onUpdateColumn = (updatedTitle) => {
         updateColumn({ title: updatedTitle }, id).then(() => {
@@ -40,7 +40,7 @@ const Column = ({
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         height: 50,
-                        color: '#002884'
+                        color: '#002884',
                     }}
                 >
                     <h2>{title}</h2>
@@ -63,11 +63,11 @@ const Column = ({
                                 moveCard={moveCard}
                                 fetchColumns={fetchColumns}
                             />
-                        ))}</DropWrapper>
-                    <CardActions>
-                        <AddForm onSubmitCard={onSubmitCard} />
-                    </CardActions>
-                
+                        ))}
+                </DropWrapper>
+                <CardActions>
+                    <AddForm onSubmitCard={onSubmitCard} />
+                </CardActions>
             </CardContent>
         </MuiCard>
     )

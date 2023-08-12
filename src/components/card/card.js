@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Card as MuiCard, CardContent } from '@mui/material'
 import { deleteCard, updateCard } from '../../api/cards'
 import DeleteAlert from './deleteAlert'
@@ -12,6 +12,8 @@ const Card = ({
     moveCard,
     fetchColumns,
 }) => {
+    const [hover, sethover] = useState(false)
+
     const onDragStart = ({ dataTransfer, target }) => {
         dataTransfer.setData('card', { _id: id, message })
         setDragElement({ _id: id, message })
@@ -25,9 +27,17 @@ const Card = ({
         e.preventDefault()
     }
 
-    const onDragEnd = ({ dataTransfer, target }) => {
+    const onDragEnd = ({ target }) => {
         fetchColumns(boardID)
         target.style.visibility = null
+    }
+
+    const onMouseEnter = () => {
+        sethover(true)
+    }
+
+    const onMouseLeave = () => {
+        sethover(false)
     }
 
     const onSubmitDelete = () => {
@@ -49,24 +59,35 @@ const Card = ({
                 onDragStart={onDragStart}
                 onDragOver={onDragOver}
                 onDragEnd={onDragEnd}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
                 style={{ margin: '8px 0px' }}
             >
                 <MuiCard>
-                    <CardContent
-                        sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                        }}
+                    <div
+                        style={{ display: 'flex', justifyContent: 'flex-end' }}
                     >
-                        <div>{message}</div>
-                        <div>
+                        <div
+                            style={{
+                                display: hover ? 'flex' : 'none',
+                                position: 'absolute',
+                                background: 'white',
+                                margin: 8,
+                                borderRadius: 8,
+                                outline: '1px lightgray solid',
+                            }}
+                        >
                             <UpdateForm
                                 onSubmitUpdate={onSubmitUpdate}
                                 message={message}
                             />
                             <DeleteAlert onSubmitDelete={onSubmitDelete} />
                         </div>
+                    </div>
+                    <CardContent
+                        sx={{ background: hover ? '#fafafa' : 'auto' }}
+                    >
+                        <div>{message}</div>
                     </CardContent>
                 </MuiCard>
             </div>

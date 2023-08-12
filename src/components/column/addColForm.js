@@ -30,7 +30,12 @@ const AddColForm = ({ onSubmitColumn }) => {
         <div>
             <Button
                 variant="outlined"
-                sx={{ width: 300, height: 142.5, color: '#002884', background: '#eeeeee' }}
+                sx={{
+                    width: 300,
+                    height: 142.5,
+                    color: '#002884',
+                    background: '#eeeeee',
+                }}
                 onClick={handleClickOpen}
             >
                 + Add Column

@@ -25,15 +25,26 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <header>
-                <AppBar height={60} sx={{display: '-webkit-inline-box', background: '#002884'}}>
+                <AppBar
+                    height={60}
+                    sx={{
+                        display: '-webkit-inline-box',
+                        background: '#002884',
+                    }}
+                >
                     <Typography
                         fontSize={'x-large'}
                         textAlign={'left'}
                         color={'#eeeeee'}
                         marginTop={1}
-                        marginLeft={2}>
-                    <img src={logo} alt='logo' style={{width: 20, height: 20, paddingRight: 5}}/>
-                    TrackGols
+                        marginLeft={2}
+                    >
+                        <img
+                            src={logo}
+                            alt="logo"
+                            style={{ width: 20, height: 20, paddingRight: 5 }}
+                        />
+                        TrackGols
                     </Typography>
                     <Typography
                         variant="h3"
