@@ -9,9 +9,14 @@ import {
     DialogActions,
 } from '@mui/material'
 
-const AddForm = ({ onSubmitCard }) => {
+const AddForm = ({ onSubmitCard, columnID, moveCard }) => {
     const [message, setMessage] = useState()
     const [open, setOpen] = useState(false)
+
+    const onDragOver = (e) => {
+        moveCard({ columnID })
+        e.preventDefault()
+    }
 
     const handleClickOpen = () => {
         setOpen(true)
@@ -27,7 +32,7 @@ const AddForm = ({ onSubmitCard }) => {
         handleClose()
     }
     return (
-        <div>
+        <div onDragOver={onDragOver}>
             <Button
                 variant="outlined"
                 sx={{ width: 268, color: '#002884', marginLeft: -1 }}

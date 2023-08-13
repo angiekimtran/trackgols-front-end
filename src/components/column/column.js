@@ -14,7 +14,6 @@ const Column = ({
     fetchBoard,
     title,
     cards,
-    dragEl,
     setDragElement,
     moveCard,
     onDrop,
@@ -66,7 +65,11 @@ const Column = ({
                         ))}
                 </DropWrapper>
                 <CardActions>
-                    <AddForm onSubmitCard={onSubmitCard} />
+                    <AddForm
+                        onSubmitCard={onSubmitCard}
+                        columnID={id}
+                        moveCard={moveCard}
+                    />
                 </CardActions>
             </CardContent>
         </MuiCard>

@@ -23,7 +23,7 @@ const Card = ({
     }
 
     const onDragOver = (e) => {
-        moveCard(id)
+        moveCard({ cardID: id })
         e.preventDefault()
     }
 

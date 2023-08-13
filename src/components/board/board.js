@@ -43,21 +43,35 @@ const Board = ({ getBoardData }) => {
         ).then(() => fetchColumns(board._id))
     }
 
-    const moveCard = (id) => {
-        setData((prev) => {
-            const modifiedColumns = prev.map((column) => ({
-                ...column,
-                cards: column.cards.reduce((acc, card) => {
-                    if (card._id.toString() === dragEl._id.toString())
-                        return acc
-                    if (card._id.toString() === id.toString())
-                        return [...acc, card, dragEl]
-                    return [...acc, card]
-                }, []),
-            }))
+    const moveCard = ({ cardID, columnID }) => {
+        if (columnID || dragEl._id.toString() !== cardID?.toString()) {
+            setData((prev) => {
+                const modifiedColumns = prev.map((column) => {
+                    const modifiedCards =
+                        columnID?.toString() === column._id.toString() &&
+                        !column.cards.some(
+                            (card) =>
+                                card._id.toString() === dragEl._id.toString()
+                        )
+                            ? [...column.cards, dragEl]
+                            : column.cards.reduce((acc, card) => {
+                                  if (
+                                      card._id.toString() ===
+                                      dragEl._id.toString()
+                                  )
+                                      return acc
+                                  if (
+                                      card._id.toString() === cardID?.toString()
+                                  )
+                                      return [...acc, card, dragEl]
+                                  return [...acc, card]
+                              }, [])
+                    return { ...column, cards: modifiedCards }
+                })
 
-            return modifiedColumns
-        })
+                return modifiedColumns
+            })
+        }
     }
 
     const setDragElement = (el) => setDragEl(el)
