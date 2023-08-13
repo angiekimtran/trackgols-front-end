@@ -66,7 +66,7 @@ const Card = ({
                 <MuiCard>
                     <div
                         style={{ display: 'flex', justifyContent: 'flex-end' }}
-                    >
+                    ><div style={{position: 'relative', width: '5em'}}>
                         <div
                             style={{
                                 display: hover ? 'flex' : 'none',
@@ -82,6 +82,7 @@ const Card = ({
                                 message={message}
                             />
                             <DeleteAlert onSubmitDelete={onSubmitDelete} />
+                        </div>
                         </div>
                     </div>
                     <CardContent

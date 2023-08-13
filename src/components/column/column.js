@@ -50,7 +50,7 @@ const Column = ({
                         fetchBoard={fetchBoard}
                     />
                 </div>
-                <DropWrapper onDrop={onDrop}>
+                <DropWrapper onDrop={onDrop}><div style={{maxHeight: 650, overflow: 'scroll'}}>
                     {cards &&
                         cards.map((card) => (
                             <Card
@@ -62,7 +62,7 @@ const Column = ({
                                 moveCard={moveCard}
                                 fetchColumns={fetchColumns}
                             />
-                        ))}
+                        ))}</div>
                 </DropWrapper>
                 <CardActions>
                     <AddForm

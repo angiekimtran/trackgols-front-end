@@ -63,7 +63,7 @@ const Board = ({ getBoardData }) => {
                                   if (
                                       card._id.toString() === cardID?.toString()
                                   )
-                                      return [...acc, card, dragEl]
+                                      return [...acc, dragEl, card ]
                                   return [...acc, card]
                               }, [])
                     return { ...column, cards: modifiedCards }
