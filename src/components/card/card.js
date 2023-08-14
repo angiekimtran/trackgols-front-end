@@ -61,6 +61,7 @@ const Card = ({
                 onDragEnd={onDragEnd}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
+                onClick={onMouseLeave}
                 style={{ margin: '8px 0px' }}
             >
                 <MuiCard>
