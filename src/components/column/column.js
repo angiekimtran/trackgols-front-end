@@ -40,6 +40,7 @@ const Column = ({
                         alignItems: 'center',
                         height: 50,
                         color: '#002884',
+                        marginLeft: 8
                     }}
                 >
                     <h2>{title}</h2>
@@ -50,19 +51,21 @@ const Column = ({
                         fetchBoard={fetchBoard}
                     />
                 </div>
-                <DropWrapper onDrop={onDrop}><div style={{maxHeight: 650, overflow: 'scroll'}}>
-                    {cards &&
-                        cards.map((card) => (
-                            <Card
-                                key={card._id}
-                                id={card._id}
-                                boardID={boardID}
-                                message={card.message}
-                                setDragElement={setDragElement}
-                                moveCard={moveCard}
-                                fetchColumns={fetchColumns}
-                            />
-                        ))}</div>
+                <DropWrapper onDrop={onDrop}>
+                    <div style={{ maxHeight: 650, overflow: 'scroll' }}>
+                        {cards &&
+                            cards.map((card) => (
+                                <Card
+                                    key={card._id}
+                                    id={card._id}
+                                    boardID={boardID}
+                                    message={card.message}
+                                    setDragElement={setDragElement}
+                                    moveCard={moveCard}
+                                    fetchColumns={fetchColumns}
+                                />
+                            ))}
+                    </div>
                 </DropWrapper>
                 <CardActions>
                     <AddForm

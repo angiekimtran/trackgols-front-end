@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {trim} from 'lodash'
+import { trim } from 'lodash'
 import {
     Button,
     Dialog,
@@ -62,7 +62,15 @@ const AddForm = ({ onSubmitCard, columnID, moveCard }) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit} disabled={ trim(message).length < 1 || trim(message).length > 200}>Submit</Button>
+                    <Button
+                        onClick={handleSubmit}
+                        disabled={
+                            trim(message).length < 1 ||
+                            trim(message).length > 200
+                        }
+                    >
+                        Submit
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

@@ -37,12 +37,19 @@ function App() {
                         textAlign={'left'}
                         color={'#eeeeee'}
                         marginTop={1}
-                        marginLeft={2}
+                        marginLeft={5}
                     >
                         <img
                             src={logo}
                             alt="logo"
-                            style={{ width: 24, height: 24, paddingRight: 5 }}
+                            style={{
+                                position: 'fixed',
+                                width: 24, 
+                                height: 24,
+                                top: 2,
+                                left: 0,
+                                margin: 10,
+                            }}
                         />
                         TrackGols
                     </Typography>

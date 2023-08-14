@@ -66,29 +66,34 @@ const Card = ({
                 <MuiCard>
                     <div
                         style={{ display: 'flex', justifyContent: 'flex-end' }}
-                    ><div style={{position: 'relative', width: '5em'}}>
-                        <div
-                            style={{
-                                display: hover ? 'flex' : 'none',
-                                position: 'absolute',
-                                background: 'white',
-                                margin: 8,
-                                borderRadius: 8,
-                                outline: '1px lightgray solid',
-                            }}
-                        >
-                            <UpdateForm
-                                onSubmitUpdate={onSubmitUpdate}
-                                message={message}
-                            />
-                            <DeleteAlert onSubmitDelete={onSubmitDelete} />
-                        </div>
+                    >
+                        <div style={{ position: 'relative', width: '5em' }}>
+                            <div
+                                style={{
+                                    display: hover ? 'flex' : 'none',
+                                    position: 'absolute',
+                                    background: 'white',
+                                    margin: 8,
+                                    borderRadius: 8,
+                                    outline: '1px lightgray solid',
+                                }}
+                            >
+                                <UpdateForm
+                                    onSubmitUpdate={onSubmitUpdate}
+                                    message={message}
+                                />
+                                <DeleteAlert onSubmitDelete={onSubmitDelete} />
+                            </div>
                         </div>
                     </div>
                     <CardContent
                         sx={{ background: hover ? '#fafafa' : 'auto' }}
                     >
-                        <div style={{overflow: 'auto', wordWrap: 'break-word'}}>{message}</div>
+                        <div
+                            style={{ overflow: 'auto', wordWrap: 'break-word' }}
+                        >
+                            {message}
+                        </div>
                     </CardContent>
                 </MuiCard>
             </div>

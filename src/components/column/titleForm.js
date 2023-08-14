@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {trim} from 'lodash'
+import React, { useState, useEffect } from 'react'
+import { trim } from 'lodash'
 import { deleteColumn } from '../../api/columns'
 import {
     Button,
@@ -37,6 +37,10 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
         })
     }
 
+    useEffect(() => {
+        setUpdatedTitle(title)
+    }, [title])
+
     return (
         <div>
             <Button onClick={handleClickOpen}>
@@ -73,7 +77,15 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
                     <DeleteColAlert onDeleteColumn={onDeleteColumn} />
                     <div>
                         <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleSubmit} disabled={ trim(updatedTitle).length < 1 || trim(updatedTitle).length > 15}>Save</Button>
+                        <Button
+                            onClick={handleSubmit}
+                            disabled={
+                                trim(updatedTitle).length < 1 ||
+                                trim(updatedTitle).length > 15
+                            }
+                        >
+                            Save
+                        </Button>
                     </div>
                 </DialogActions>
             </Dialog>

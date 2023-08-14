@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import {trim} from 'lodash'
+import React, { useState, useEffect } from 'react'
+import { trim } from 'lodash'
 import {
     Button,
     Dialog,
@@ -27,6 +27,10 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
         onSubmitUpdate(trim(updatedMessage))
         handleClose()
     }
+
+    useEffect(() => {
+        setUpdatedMessage(message)
+    }, [message])
     return (
         <div style={{ borderRight: '1px lightgray solid' }}>
             <Button
@@ -60,7 +64,15 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit} disabled={ trim(updatedMessage).length < 1 || trim(updatedMessage).length > 200}>Save</Button>
+                    <Button
+                        onClick={handleSubmit}
+                        disabled={
+                            trim(updatedMessage).length < 1 ||
+                            trim(updatedMessage).length > 200
+                        }
+                    >
+                        Save
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

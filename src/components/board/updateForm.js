@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {trim} from 'lodash'
+import { trim } from 'lodash'
 import {
     Button,
     Dialog,
@@ -68,7 +68,15 @@ const UpdateBoardTitle = ({ title, onUpdateBoardTitle }) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit} disabled={ trim(updatedTitle).length < 1 || trim(updatedTitle).length > 50}>Save</Button>
+                    <Button
+                        onClick={handleSubmit}
+                        disabled={
+                            trim(updatedTitle).length < 1 ||
+                            trim(updatedTitle).length > 50
+                        }
+                    >
+                        Save
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>
