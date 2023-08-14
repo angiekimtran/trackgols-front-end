@@ -42,7 +42,7 @@ function App() {
                         <img
                             src={logo}
                             alt="logo"
-                            style={{ width: 20, height: 20, paddingRight: 5 }}
+                            style={{ width: 24, height: 24, paddingRight: 5 }}
                         />
                         TrackGols
                     </Typography>

@@ -88,7 +88,7 @@ const Card = ({
                     <CardContent
                         sx={{ background: hover ? '#fafafa' : 'auto' }}
                     >
-                        <div>{message}</div>
+                        <div style={{overflow: 'auto', wordWrap: 'break-word'}}>{message}</div>
                     </CardContent>
                 </MuiCard>
             </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {trim} from 'lodash'
 import { deleteColumn } from '../../api/columns'
 import {
     Button,
@@ -26,7 +27,7 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
     }
 
     const handleSubmit = () => {
-        onUpdateColumn(updatedTitle)
+        onUpdateColumn(trim(updatedTitle))
         handleClose()
     }
 
@@ -58,6 +59,8 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
                         variant="standard"
                         value={updatedTitle}
                         onChange={(e) => setUpdatedTitle(e.target.value)}
+                        error={trim(updatedTitle).length > 15}
+                        helperText="Title must contain 1-15 characters."
                     />
                 </DialogContent>
                 <DialogActions
@@ -70,7 +73,7 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
                     <DeleteColAlert onDeleteColumn={onDeleteColumn} />
                     <div>
                         <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleSubmit}>Save</Button>
+                        <Button onClick={handleSubmit} disabled={ trim(updatedTitle).length < 1 || trim(updatedTitle).length > 15}>Save</Button>
                     </div>
                 </DialogActions>
             </Dialog>

@@ -27,7 +27,7 @@ const DeleteColAlert = ({ onDeleteColumn }) => {
 
     return (
         <div>
-            <Button onClick={handleClickOpen}>Delete Column</Button>
+            <Button color='error' onClick={handleClickOpen}>Delete Column</Button>
             <Dialog
                 open={open}
                 onClose={handleClose}

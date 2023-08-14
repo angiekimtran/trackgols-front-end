@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import {trim} from 'lodash'
 import {
     Button,
     Dialog,
@@ -24,7 +25,7 @@ const UpdateBoardTitle = ({ title, onUpdateBoardTitle }) => {
     }
 
     const handleSubmit = () => {
-        onUpdateBoardTitle(updatedTitle)
+        onUpdateBoardTitle(trim(updatedTitle))
         handleClose()
     }
     useEffect(() => {
@@ -61,11 +62,13 @@ const UpdateBoardTitle = ({ title, onUpdateBoardTitle }) => {
                         variant="standard"
                         value={updatedTitle}
                         onChange={(e) => setUpdatedTitle(e.target.value)}
+                        error={trim(updatedTitle).length > 50}
+                        helperText="Title must contain 1-50 characters."
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit}>Save</Button>
+                    <Button onClick={handleSubmit} disabled={ trim(updatedTitle).length < 1 || trim(updatedTitle).length > 50}>Save</Button>
                 </DialogActions>
             </Dialog>
         </div>

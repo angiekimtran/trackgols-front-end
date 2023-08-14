@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {trim} from 'lodash'
 import {
     Button,
     Dialog,
@@ -23,7 +24,7 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
     }
 
     const handleSubmit = () => {
-        onSubmitUpdate(updatedMessage)
+        onSubmitUpdate(trim(updatedMessage))
         handleClose()
     }
     return (
@@ -53,11 +54,13 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
                         variant="standard"
                         value={updatedMessage}
                         onChange={(e) => setUpdatedMessage(e.target.value)}
+                        error={trim(updatedMessage).length > 200}
+                        helperText="Message must contain 1-200 characters."
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit}>Save</Button>
+                    <Button onClick={handleSubmit} disabled={ trim(updatedMessage).length < 1 || trim(updatedMessage).length > 200}>Save</Button>
                 </DialogActions>
             </Dialog>
         </div>
