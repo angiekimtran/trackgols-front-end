@@ -46,7 +46,7 @@ const UpdateBoardTitle = ({ title, onUpdateBoardTitle }) => {
                 <EditIcon fontSize="large" />
             </Button>
             <Dialog open={open}>
-                <DialogTitle>Update Title</DialogTitle>
+                <DialogTitle>Edit Title</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
                     <DialogContentText>
                         Enter a new title for your board.

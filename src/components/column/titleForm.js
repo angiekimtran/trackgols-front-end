@@ -50,7 +50,7 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
                 <DialogTitle> Edit Column</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
                     <DialogContentText>
-                        Enter a title for your column.
+                        Enter a new title for your column.
                     </DialogContentText>
                     <TextField
                         autoFocus

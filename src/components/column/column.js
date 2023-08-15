@@ -52,7 +52,7 @@ const Column = ({
                     />
                 </div>
                 <DropWrapper onDrop={onDrop}>
-                    <div style={{ maxHeight: 650, overflow: 'scroll' }}>
+                    <div style={{ maxHeight: 720, overflow: 'scroll' }}>
                         {cards &&
                             cards.map((card) => (
                                 <Card

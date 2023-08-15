@@ -88,7 +88,7 @@ const Card = ({
                         </div>
                     </div>
                     <CardContent
-                        sx={{ background: hover ? '#fafafa' : 'auto' }}
+                        sx={{background: hover ? '#fafafa' : 'auto' }}
                     >
                         <div
                             style={{ overflow: 'auto', wordWrap: 'break-word' }}
