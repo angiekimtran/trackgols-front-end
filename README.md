@@ -9,8 +9,10 @@ TrackGols is a personalized web application designed for users to effectively tr
 -   Front-end: React
 
 ## How To Set Up TrackGols's Front-end Layer
--   From the root directory do "npm install"
--   Do "npm start" to run the front-end server
+-   Run this code on the root directory to install dependencies:
+     -   ```npm install```
+-   Run the React app with:
+    -    ```npm start```
 
 ## Dependencies
 
