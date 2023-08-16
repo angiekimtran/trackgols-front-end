@@ -1,6 +1,6 @@
 # TrackGols: Front-end Layer
 
-TrackGols is a personalized web application designed for users to effectively track and manage their goals. This web application provides users with customizable goal tracking capabilities, enabling them to set a goal, create columns and tasks, and visually track their progress by seamlessly dragging and dropping tasks across different columns. With TrackGols, achieving your goals has never been easier and fun! 
+TrackGols is a personalized web application designed for users to effectively track and manage their goals. This web application provides users with customizable goal tracking capabilities, enabling them to set a goal, create columns and tasks, and visually track their progress by seamlessly dragging and dropping tasks across different columns. With TrackGols, achieving your goals has never been easier and fun!
 
 ## Technology Stack
 
@@ -9,10 +9,11 @@ TrackGols is a personalized web application designed for users to effectively tr
 -   Front-end: React
 
 ## How To Set Up TrackGols's Front-end Layer
+
 -   Run this code on the root directory to install dependencies:
-     -   ```npm install```
+    -   `npm install`
 -   Run the React app with:
-    -    ```npm start```
+    -   `npm start`
 
 ## Dependencies
 

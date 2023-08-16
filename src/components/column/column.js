@@ -40,7 +40,7 @@ const Column = ({
                         alignItems: 'center',
                         height: 50,
                         color: '#002884',
-                        marginLeft: 8
+                        marginLeft: 8,
                     }}
                 >
                     <h2>{title}</h2>

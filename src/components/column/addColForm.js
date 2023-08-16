@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { trim } from 'lodash'
 import {
     Button,
     Dialog,
@@ -23,7 +24,7 @@ const AddColForm = ({ onSubmitColumn }) => {
     }
 
     const handleSubmit = () => {
-        onSubmitColumn(title)
+        onSubmitColumn(trim(title))
         handleClose()
     }
     return (
@@ -57,11 +58,20 @@ const AddColForm = ({ onSubmitColumn }) => {
                         variant="standard"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
+                        error={trim(title).length > 15}
+                        helperText="Title must contain 1-15 characters."
                     />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSubmit}>Submit</Button>
+                    <Button
+                        onClick={handleSubmit}
+                        disabled={
+                            trim(title).length < 1 || trim(title).length > 15
+                        }
+                    >
+                        Submit
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

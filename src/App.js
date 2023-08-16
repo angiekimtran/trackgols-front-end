@@ -44,7 +44,7 @@ function App() {
                             alt="logo"
                             style={{
                                 position: 'fixed',
-                                width: 24, 
+                                width: 24,
                                 height: 24,
                                 top: 2,
                                 left: 0,
