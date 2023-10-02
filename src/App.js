@@ -60,7 +60,7 @@ function App() {
                         color={'#eeeeee'}
                         marginRight={22}
                     >
-                        {boardTitle ? boardTitle : 'TrackGols'}
+                        {boardTitle}
                     </Typography>
                 </AppBar>
             </header>

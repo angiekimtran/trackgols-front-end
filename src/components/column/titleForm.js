@@ -13,7 +13,7 @@ import {
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import DeleteColAlert from './deleteColAlert'
 
-const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
+const TitleForm = ({ title, boardID, columnID, onUpdateColumn, fetchBoard }) => {
     const [updatedTitle, setUpdatedTitle] = useState(title)
     const [open, setOpen] = useState(false)
 
@@ -33,7 +33,7 @@ const TitleForm = ({ title, columnID, onUpdateColumn, fetchBoard }) => {
 
     const onDeleteColumn = () => {
         deleteColumn(columnID).then(() => {
-            fetchBoard()
+            fetchBoard(boardID)
         })
     }
 

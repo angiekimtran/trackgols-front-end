@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export const getBoard = async () => {
+export const getBoard = async (id) => {
     return axios
-        .get(`http://localhost:3001/boards/64c35917d657b2c44147a55f`)
+        .get(`http://localhost:3001/boards/${id}`)
         .then((response) => {
             return response.data
         })

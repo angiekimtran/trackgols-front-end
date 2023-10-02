@@ -25,6 +25,7 @@ const getModifiedData = (columns, modifiedColumns) => {
 }
 
 const Board = ({ getBoardData }) => {
+    const {pathname} = window.location
     const [board, setBoard] = useState({})
     const [columns, setColumns] = useState([])
     const [cards, setCards] = useState([])
@@ -76,8 +77,8 @@ const Board = ({ getBoardData }) => {
 
     const setDragElement = (el) => setDragEl(el)
 
-    const fetchBoard = () => {
-        getBoard().then((data) => {
+    const fetchBoard = (id) => {
+        getBoard(id).then((data) => {
             setBoard(data)
         })
     }
@@ -90,21 +91,21 @@ const Board = ({ getBoardData }) => {
 
     const onSubmitColumn = (title) => {
         createColumn({ title }, board._id).then(() => {
-            fetchBoard()
+            fetchBoard(board._id)
         })
     }
 
     const onUpdateBoardTitle = (updatedTitle) => {
         updateBoard(updatedTitle, board._id).then(() => {
-            fetchBoard()
+            fetchBoard(board._id)
         })
     }
 
     useEffect(() => {
-        if (isEmpty(board)) {
-            fetchBoard()
+        if (isEmpty(board) && pathname) {
+            fetchBoard(pathname.replace('/', ''))
         }
-    })
+    }, [pathname])
 
     useEffect(() => {
         if (!isEmpty(board) && board?._id) {
@@ -132,15 +133,13 @@ const Board = ({ getBoardData }) => {
     }, [columns])
 
     useEffect(() => {
-        if (!isEmpty(cards)) {
-            const d = columns.map((column) => ({
-                ...column,
-                cards: column.cards.map((card) =>
-                    cards.find((c) => c._id.toString() === card._id.toString())
-                ),
-            }))
-            setData(d)
-        }
+        const d = columns.map((column) => ({
+            ...column,
+            cards: column.cards.map((card) =>
+                cards.find((c) => c._id.toString() === card._id.toString())
+            ),
+        }))
+        setData(d)
     }, [cards])
 
     return (

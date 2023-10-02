@@ -47,8 +47,9 @@ const Column = ({
                     <TitleForm
                         title={title}
                         onUpdateColumn={onUpdateColumn}
+                        boardID={boardID}
                         columnID={id}
-                        fetchBoard={fetchBoard}
+                        fetchBoard={()=>fetchBoard(boardID)}
                     />
                 </div>
                 <DropWrapper onDrop={onDrop}>

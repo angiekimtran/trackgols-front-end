@@ -45,7 +45,7 @@ const UpdateForm = ({ message, onSubmitUpdate }) => {
                 <EditIcon fontSize="small" />
             </Button>
             <Dialog open={open}>
-                <DialogTitle>Edit Card</DialogTitle>
+                <DialogTitle>Edit Task</DialogTitle>
                 <DialogContent sx={{ width: 400 }}>
                     <TextField
                         autoFocus
